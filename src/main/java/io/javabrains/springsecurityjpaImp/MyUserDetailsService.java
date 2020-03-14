@@ -2,6 +2,10 @@ package io.javabrains.springsecurityjpaImp;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +20,11 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	HttpSession session;
+
+	Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -23,11 +32,16 @@ public class MyUserDetailsService implements UserDetailsService {
 		
 		Optional<User> user = userRepository.findByUsername(username);
 
-		System.out.println("loadUserByUsername user " + user);
-
 		user.orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
+		System.out.println("loadUserByUsername user..... " + user.toString());
 
-		return user.map(MyUserDetails::new).get();
+		UserDetails userDetails = user.map(MyUserDetails::new).get();
+
+		System.out.println("loadUserByUsername userDetails..... " + userDetails.toString());
+
+		session.setAttribute("loginDetails", userDetails);
+
+		return userDetails;
 	}
 
 }

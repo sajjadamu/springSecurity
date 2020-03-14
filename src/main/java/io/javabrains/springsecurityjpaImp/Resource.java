@@ -1,21 +1,25 @@
 package io.javabrains.springsecurityjpaImp;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Resource /*implements ErrorController*/ {
 
-	@CrossOrigin("http://example.com")
+	@Autowired
+	HttpSession httpSession;
+
 	@GetMapping("/")
-	public String home() {
-		return "<h1>welcome</>";
+	public String home(Map<String, Object> model) {
+		model.put("message", "You are in new page !!");
+		System.out.println(" Resource loginDetails in home method " + httpSession.getAttribute("loginDetails"));
+		return "index";
 	}
 
 	@GetMapping("/user")
