@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class Myfilter implements Filter {
 
 	@Override

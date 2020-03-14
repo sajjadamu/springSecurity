@@ -5,13 +5,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.xml.bind.attachment.AttachmentUnmarshaller;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import model.User;
+
 
 public class MyUserDetails implements UserDetails {
 
@@ -25,10 +24,11 @@ public class MyUserDetails implements UserDetails {
 		this.username = user.getUsername();
 		this.password = user.getPassword();
 		this.active = user.isActive();
-		//this.role = user.getRole();
-		this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
+		// this.role = user.getRole();
+	/*	this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
+				.collect(Collectors.toList());*/
+		this.authority = Arrays.stream(user.getRole().split(",")).map(role-> new SimpleGrantedAuthority("ROLE_"+role))
 				.collect(Collectors.toList());
-
 	}
 
 	@Override

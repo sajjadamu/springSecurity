@@ -25,7 +25,8 @@ public class Resource {
 
 	@GetMapping("/user")
 	public String user() {
-		return "<h1>welcome user</>";
+		System.out.println(" Resource loginDetails in user method " + httpSession.getAttribute("loginDetails"));
+		return "hello";
 	}
 
 	@GetMapping("/admin")
