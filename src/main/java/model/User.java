@@ -16,7 +16,7 @@ public class User {
 	private String useName;
 	private String password;
 	private boolean active;
-	private String role;
+	private String roles;
 
 	public int getId() {
 		return id;
@@ -50,12 +50,18 @@ public class User {
 		this.active = active;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", useName=" + useName + ", password=" + password + ", active=" + active + ", roles="
+				+ roles + "]";
 	}
 
 }

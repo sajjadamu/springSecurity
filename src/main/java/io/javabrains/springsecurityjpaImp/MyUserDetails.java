@@ -17,13 +17,16 @@ public class MyUserDetails implements UserDetails {
 	private String password;
 	private boolean active;
 	private List<GrantedAuthority> authority;
+	private String roles;
 
 	public MyUserDetails(User user) {
 		this.userName = user.getUseName();
 		this.password = user.getPassword();
 		this.active = user.isActive();
-		this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
+		this.roles = user.getRoles();
+		this.authority = Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
+
 	}
 
 	@Override
@@ -59,6 +62,20 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	@Override
+	public String toString() {
+		return "MyUserDetails [userName=" + userName + ", password=" + password + ", active=" + active + ", authority="
+				+ authority + ", roles=" + roles + "]";
 	}
 
 }
