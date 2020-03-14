@@ -7,17 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "User_Table")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String username;
 	private String password;
 	private boolean active;
-	private String role;
+	private String roles;
 
 	public int getId() {
 		return id;
@@ -51,18 +50,18 @@ public class User {
 		this.active = active;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", active=" + active + ", role="
-				+ role + "]";
+		return "User [id=" + id + ", useName=" + username + ", password=" + password + ", active=" + active + ", roles="
+				+ roles + "]";
 	}
 
 }

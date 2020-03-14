@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @SpringBootApplication
-@EntityScan(basePackages = "model")
 @EnableWebSecurity
+@EntityScan(basePackages = "model")
 public class SpringSecurityJpaImpApplication{
 
 	public static void main(String[] args) {

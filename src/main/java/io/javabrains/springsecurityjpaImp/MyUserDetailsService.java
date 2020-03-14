@@ -28,11 +28,9 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		System.out.println("loadUserByUsername useName...... " + username);
-
+		System.out.println("loadUserByUsername useName " + username); 
+		
 		Optional<User> user = userRepository.findByUsername(username);
-
-		System.out.println("loadUserByUsername user..... " + user.toString());
 
 		user.orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
 		System.out.println("loadUserByUsername user..... " + user.toString());
@@ -42,6 +40,7 @@ public class MyUserDetailsService implements UserDetailsService {
 		System.out.println("loadUserByUsername userDetails..... " + userDetails.toString());
 
 		session.setAttribute("loginDetails", userDetails);
+
 		return userDetails;
 	}
 
