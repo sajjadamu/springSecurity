@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import model.User;
 
+
 public class MyUserDetails implements UserDetails {
 
 	private String username;
@@ -23,8 +24,8 @@ public class MyUserDetails implements UserDetails {
 		this.username = user.getUsername();
 		this.password = user.getPassword();
 		this.active = user.isActive();
-		this.authority = Arrays.stream(user.getRole().split(","))
-				.map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
+		this.authority = Arrays.stream(user.getRoles().split(",")).map(role-> new SimpleGrantedAuthority("ROLE_"+role))
+				               .collect(Collectors.toList());
 	}
 
 	@Override
