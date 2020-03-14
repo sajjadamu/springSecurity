@@ -28,7 +28,6 @@ public class MyUserDetails implements UserDetails {
 		//this.role = user.getRole();
 		this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
-
 	}
 
 	@Override

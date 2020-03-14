@@ -35,13 +35,13 @@ public class MyUserDetailsService implements UserDetailsService {
 		System.out.println("loadUserByUsername user..... " + user.toString());
 
 		user.orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
+		System.out.println("loadUserByUsername user..... " + user.toString());
 
 		UserDetails userDetails = user.map(MyUserDetails::new).get();
 
 		System.out.println("loadUserByUsername userDetails..... " + userDetails.toString());
 
 		session.setAttribute("loginDetails", userDetails);
-
 		return userDetails;
 	}
 
