@@ -31,8 +31,10 @@ public class Resource implements ErrorController {
 	}
 
 	@GetMapping("/admin")
-	public String admin() {
-		return "<h1>welcome admin</>";
+	public String admin(Map<String, String> model) {
+		model.put("message", "You are in new page !! By Admin");
+		System.out.println(" Resource loginDetails in Admin method " + httpSession.getAttribute("loginDetails"));
+		return "index";
 	}
 	
 	

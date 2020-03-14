@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User_Table")
+@Table
 public class User {
 
 	@Id
@@ -16,7 +16,7 @@ public class User {
 	private String username;
 	private String password;
 	private boolean active;
-	private String roles;
+	private String role;
 
 	public int getId() {
 		return id;
@@ -50,18 +50,18 @@ public class User {
 		this.active = active;
 	}
 
-	public String getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", useName=" + username + ", password=" + password + ", active=" + active + ", roles="
-				+ roles + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", active=" + active + ", role="
+				+ role + "]";
 	}
 
 }
