@@ -13,16 +13,16 @@ import model.User;
 
 public class MyUserDetails implements UserDetails {
 
-	private String userName;
+	private String username;
 	private String password;
 	private boolean active;
 	private List<GrantedAuthority> authority;
 
 	public MyUserDetails(User user) {
-		this.userName = user.getUseName();
+		this.username = user.getUsername();
 		this.password = user.getPassword();
 		this.active = user.isActive();
-		this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
+		this.authority = Arrays.stream(user.getRoles().split(",")).map(role-> new SimpleGrantedAuthority("ROLE_"+role))
 				.collect(Collectors.toList());
 	}
 
@@ -38,7 +38,7 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 
 	@Override
