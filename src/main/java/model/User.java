@@ -13,10 +13,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String useName;
+	
+	private String username;
 	private String password;
 	private boolean active;
-	private String roles;
+	private String role;
 
 	public int getId() {
 		return id;
@@ -26,12 +27,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUseName() {
-		return useName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUseName(String useName) {
-		this.useName = useName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -50,18 +51,18 @@ public class User {
 		this.active = active;
 	}
 
-	public String getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", useName=" + useName + ", password=" + password + ", active=" + active + ", roles="
-				+ roles + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", active=" + active + ", role="
+				+ role + "]";
 	}
 
 }

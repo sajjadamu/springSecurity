@@ -26,15 +26,15 @@ public class MyUserDetailsService implements UserDetailsService {
 	Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
 
 	@Override
-	public UserDetails loadUserByUsername(String useName) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		System.out.println("loadUserByUsername useName...... " + useName);
+		System.out.println("loadUserByUsername useName...... " + username);
 
-		Optional<User> user = userRepository.findByUseName(useName);
+		Optional<User> user = userRepository.findByUsername(username);
 
 		System.out.println("loadUserByUsername user..... " + user.toString());
 
-		user.orElseThrow(() -> new UsernameNotFoundException("user not found " + useName));
+		user.orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
 
 		UserDetails userDetails = user.map(MyUserDetails::new).get();
 

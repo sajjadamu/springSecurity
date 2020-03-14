@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.xml.bind.attachment.AttachmentUnmarshaller;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,18 +15,18 @@ import model.User;
 
 public class MyUserDetails implements UserDetails {
 
-	private String userName;
+	private String username;
 	private String password;
 	private boolean active;
 	private List<GrantedAuthority> authority;
-	private String roles;
+	private String role;
 
 	public MyUserDetails(User user) {
-		this.userName = user.getUseName();
+		this.username = user.getUsername();
 		this.password = user.getPassword();
 		this.active = user.isActive();
-		this.roles = user.getRoles();
-		this.authority = Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new)
+		//this.role = user.getRole();
+		this.authority = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new)
 				.collect(Collectors.toList());
 
 	}
@@ -41,7 +43,7 @@ public class MyUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return username;
 	}
 
 	@Override
@@ -64,18 +66,10 @@ public class MyUserDetails implements UserDetails {
 		return true;
 	}
 
-	public String getRoles() {
-		return roles;
-	}
-
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
 	@Override
 	public String toString() {
-		return "MyUserDetails [userName=" + userName + ", password=" + password + ", active=" + active + ", authority="
-				+ authority + ", roles=" + roles + "]";
+		return "MyUserDetails [username=" + username + ", password=" + password + ", active=" + active + ", authority="
+				+ authority + ", role=" + role + "]";
 	}
 
 }
