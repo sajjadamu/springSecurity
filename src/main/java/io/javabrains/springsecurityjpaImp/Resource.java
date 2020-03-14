@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +25,8 @@ public class Resource {
 
 	@GetMapping("/user")
 	public String user() {
-		return "<h1>welcome user</>";
+		System.out.println(" Resource loginDetails in user method " + httpSession.getAttribute("loginDetails"));
+		return "hello";
 	}
 
 	@GetMapping("/admin")
